@@ -1,0 +1,14 @@
+<?php
+
+namespace App\CouponApp\Modules\{{ modulePluralPascal }}\{{ portalType }}\Repositories;
+
+use App\CouponApp\BaseCode\Repositories\BaseRepository;
+use App\CouponApp\Modules\{{ modulePluralPascal }}\{{ portalType }}\Models\{{ moduleNameSingular }};
+
+class {{ className }} extends BaseRepository
+{
+    public function __construct({{ moduleNameSingular }} $model)
+    {
+        parent::__construct($model);
+    }
+}

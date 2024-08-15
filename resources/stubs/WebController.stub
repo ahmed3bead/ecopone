@@ -1,0 +1,68 @@
+<?php
+
+namespace App\CouponApp\Modules\{{ modulePluralPascal }}\{{ portalType }}\Controllers;
+
+use TCG\Voyager\Http\Controllers\VoyagerBaseController;
+use App\CouponApp\Modules\{{ modulePluralPascal }}\{{ portalType }}\Services\{{ moduleNameSingular }}Service;
+use Illuminate\Http\Request;
+
+use App\CouponApp\Modules\{{ modulePluralPascal }}\{{ portalType }}\Requests\{{ moduleNameSingular }}ListRequest;
+use App\CouponApp\Modules\{{ modulePluralPascal }}\{{ portalType }}\Requests\{{ moduleNameSingular }}ShowRequest;
+use App\CouponApp\Modules\{{ modulePluralPascal }}\{{ portalType }}\Requests\{{ moduleNameSingular }}UpdateRequest;
+use App\CouponApp\Modules\{{ modulePluralPascal }}\{{ portalType }}\Requests\{{ moduleNameSingular }}DeleteRequest;
+use App\CouponApp\Modules\{{ modulePluralPascal }}\{{ portalType }}\Requests\{{ moduleNameSingular }}CreateRequest;
+use App\CouponApp\BaseCode\Requests\BaseRequest;
+
+use App\CouponApp\BaseCode\Controllers\BaseApiController;
+
+class {{ className }} extends BaseApiController
+{
+    protected {{ moduleNameSingular }}Service ${{ moduleNameSingular }}Service;
+
+    public function __construct({{ moduleNameSingular }}Service ${{ moduleNameSingular }}Service)
+    {
+        $this->{{ moduleNameSingular }}Service = ${{ moduleNameSingular }}Service;
+    }
+
+        public function index({{ moduleNameSingular }}ListRequest $request)
+    {
+        // You can customize this method to fetch data using the service
+        $data = $this->{{ moduleNameSingular }}Service->all($request);
+        return view('voyager::bread.browse', compact('data'));
+    }
+
+    public function show({{ moduleNameSingular }}ShowRequest $request, $id)
+    {
+        $data = $this->{{ moduleNameSingular }}Service->find($request,$id);
+        return view('voyager::bread.read', compact('data'));
+    }
+
+    public function create(BaseRequest $request)
+    {
+        return view('voyager::bread.edit-add');
+    }
+
+    public function store({{ moduleNameSingular }}CreateRequest $request)
+    {
+        $data = $this->{{ moduleNameSingular }}Service->create($request,$request->all());
+        return redirect()->route('voyager.{{ moduleKebab }}s.index');
+    }
+
+    public function edit(BaseRequest $request,$id)
+    {
+        $data = $this->{{ moduleNameSingular }}Service->find($request,$id);
+        return view('voyager::bread.edit-add', compact('data'));
+    }
+
+    public function update({{ moduleNameSingular }}UpdateRequest $request, $id)
+    {
+        $data = $this->{{ moduleNameSingular }}Service->update($request,$request->all(), $id);
+        return redirect()->route('voyager.{{ moduleKebab }}s.index');
+    }
+
+    public function destroy({{ moduleNameSingular }}DeleteRequest  $request, $id)
+    {
+        $this->{{ moduleNameSingular }}Service->delete($request,$id);
+        return redirect()->route('voyager.{{ moduleKebab }}s.index');
+    }
+}

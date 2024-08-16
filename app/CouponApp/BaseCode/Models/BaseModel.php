@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use App\CouponApp\BaseCode\Interfaces\IModel;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /**
@@ -125,6 +126,16 @@ use Illuminate\Support\Str;
  */
 abstract class BaseModel extends Model implements IModel
 {
+
+    public function getLogoUrlAttribute()
+    {
+        if ($this->logo) {
+            $path = Storage::url($this->logo); // Get the relative URL
+            return url($path); // Prepend the base URL
+        }
+
+        return null; // Or return a placeholder image URL if desired
+    }
 
     function getDefaultListingFields()
     {

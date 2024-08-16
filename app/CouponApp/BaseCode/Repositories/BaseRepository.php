@@ -26,8 +26,6 @@ abstract class BaseRepository implements IRepository
             ->with($this->model->getDefaultIncludes())
             ->paginate(request()->limit)
             ->appends(request()->query());
-
-
     }
 
     public function minimalListWithFilter(

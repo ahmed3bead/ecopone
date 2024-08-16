@@ -13,7 +13,7 @@ class Store extends BaseModel
     use Translatable;
     protected $appends = ['formatted_translations','is_favorite'];
 
-    protected $translatable = ['slug', 'name', 'description'];
+    protected $translatable = ['slug','name', 'description'];
 
     protected $fillable = [
         'name',

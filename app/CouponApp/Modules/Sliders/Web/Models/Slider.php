@@ -14,7 +14,8 @@ class Slider extends BaseModel
     protected $translatable = ['name'];
 
     protected $fillable = [
-        'title',
+        'name',
+        'slug',
         'image',
         'url',
         'is_active',

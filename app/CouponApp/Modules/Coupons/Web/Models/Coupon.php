@@ -16,7 +16,7 @@ class Coupon extends BaseModel
 
     use Translatable;
 
-    protected $translatable = ['name'];
+    protected $translatable = ['name','description'];
     protected $appends = ['is_favorite','formatted_translations'];
     protected $fillable = [
         'name',

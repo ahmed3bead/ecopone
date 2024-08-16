@@ -47,20 +47,7 @@ class Coupon extends BaseModel
         'is_active' => 'boolean',
     ];
 
-    public function getFormattedTranslationsAttribute()
-    {
-        $translations = $this->translations()->get();
-        $formatted = [];
 
-        foreach ($translations as $translation) {
-            if (!isset($formatted[$translation->locale])) {
-                $formatted[$translation->locale] = [];
-            }
-            $formatted[$translation->locale][$translation->column_name] = $translation->value;
-        }
-
-        return $formatted;
-    }
 
     public function country()
     {

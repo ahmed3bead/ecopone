@@ -6,7 +6,7 @@ use App\CouponApp\BaseCode\Models\BaseModel;
 use App\CouponApp\Modules\Stores\Web\Models\Store;
 use Spatie\QueryBuilder\AllowedFilter;
 use TCG\Voyager\Facades\Voyager;
-use App\CouponApp\BaseCode\Translatable;
+use TCG\Voyager\Traits\Translatable;
 
 class Category extends BaseModel
 {

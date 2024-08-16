@@ -9,12 +9,15 @@ use App\CouponApp\Modules\CouponReactions\Web\Models\CouponReaction;
 use App\CouponApp\Modules\FavouriteCoupons\Web\Models\FavouriteCoupon;
 use App\CouponApp\Modules\Stores\Web\Models\Store;
 use Spatie\QueryBuilder\AllowedFilter;
-use App\CouponApp\BaseCode\Translatable;
+use TCG\Voyager\Traits\Translatable;
 
 class Coupon extends BaseModel
 {
 
+
     use Translatable;
+
+
 
     protected $translatable = ['name','description'];
     protected $appends = ['logo_url','is_favorite','formatted_translations'];
@@ -40,8 +43,24 @@ class Coupon extends BaseModel
     protected $casts = [
         'start_at' => 'date',
         'end_at' => 'date',
+        'is_featured' => 'boolean',
         'is_active' => 'boolean',
     ];
+
+    public function getFormattedTranslationsAttribute()
+    {
+        $translations = $this->translations()->get();
+        $formatted = [];
+
+        foreach ($translations as $translation) {
+            if (!isset($formatted[$translation->locale])) {
+                $formatted[$translation->locale] = [];
+            }
+            $formatted[$translation->locale][$translation->column_name] = $translation->value;
+        }
+
+        return $formatted;
+    }
 
     public function country()
     {

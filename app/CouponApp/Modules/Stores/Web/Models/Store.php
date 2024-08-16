@@ -6,7 +6,7 @@ use App\CouponApp\BaseCode\Models\BaseModel;
 use App\CouponApp\Modules\Countries\Web\Models\Country;
 use App\CouponApp\Modules\FavouriteStores\Web\Models\FavouriteStore;
 use Spatie\QueryBuilder\AllowedFilter;
-use App\CouponApp\BaseCode\Translatable;
+use TCG\Voyager\Traits\Translatable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 

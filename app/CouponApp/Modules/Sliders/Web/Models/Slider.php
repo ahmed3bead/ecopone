@@ -5,7 +5,7 @@ namespace App\CouponApp\Modules\Sliders\Web\Models;
 use App\CouponApp\BaseCode\Models\BaseModel;
 use App\CouponApp\Modules\Countries\Web\Models\Country;
 use Spatie\QueryBuilder\AllowedFilter;
-use App\CouponApp\BaseCode\Translatable;
+use TCG\Voyager\Traits\Translatable;
 
 class Slider extends BaseModel
 {

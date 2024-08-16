@@ -4,11 +4,12 @@ namespace App\CouponApp\Modules\Countries\Web\Models;
 
 use App\CouponApp\BaseCode\Models\BaseModel;
 use Spatie\QueryBuilder\AllowedFilter;
-use TCG\Voyager\Traits\Translatable;
+use App\CouponApp\BaseCode\Translatable;
 
 class Country extends BaseModel
 {
     use Translatable;
+    protected $appends = ['formatted_translations'];
 
     protected $translatable = ['name','code'];
 

@@ -6,11 +6,12 @@ use App\CouponApp\BaseCode\Models\BaseModel;
 use App\CouponApp\Modules\Countries\Web\Models\Country;
 use App\CouponApp\Modules\FavouriteStores\Web\Models\FavouriteStore;
 use Spatie\QueryBuilder\AllowedFilter;
-use TCG\Voyager\Traits\Translatable;
+use App\CouponApp\BaseCode\Translatable;
 
 class Store extends BaseModel
 {
     use Translatable;
+    protected $appends = ['formatted_translations','is_favorite'];
 
     protected $translatable = ['slug', 'name', 'description'];
 
@@ -56,7 +57,6 @@ class Store extends BaseModel
         ];
     }
 
-    protected $appends = ['is_favorite'];
 
     public function favouriteStores()
     {

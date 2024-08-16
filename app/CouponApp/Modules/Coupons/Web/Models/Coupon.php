@@ -9,7 +9,7 @@ use App\CouponApp\Modules\CouponReactions\Web\Models\CouponReaction;
 use App\CouponApp\Modules\FavouriteCoupons\Web\Models\FavouriteCoupon;
 use App\CouponApp\Modules\Stores\Web\Models\Store;
 use Spatie\QueryBuilder\AllowedFilter;
-use TCG\Voyager\Traits\Translatable;
+use App\CouponApp\BaseCode\Translatable;
 
 class Coupon extends BaseModel
 {
@@ -17,7 +17,7 @@ class Coupon extends BaseModel
     use Translatable;
 
     protected $translatable = ['name'];
-    protected $appends = ['is_favorite'];
+    protected $appends = ['is_favorite','formatted_translations'];
     protected $fillable = [
         'name',
         'country_id',

@@ -6,11 +6,14 @@ use App\CouponApp\BaseCode\Models\BaseModel;
 use App\CouponApp\Modules\Stores\Web\Models\Store;
 use Spatie\QueryBuilder\AllowedFilter;
 use TCG\Voyager\Facades\Voyager;
-use TCG\Voyager\Traits\Translatable;
+use App\CouponApp\BaseCode\Translatable;
 
 class Category extends BaseModel
 {
     use Translatable;
+
+    protected $appends = ['formatted_translations'];
+
 
     protected $translatable = ['slug', 'name'];
 

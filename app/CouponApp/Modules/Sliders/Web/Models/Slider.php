@@ -21,6 +21,7 @@ class Slider extends BaseModel
         'country_id',
         'start_at',
         'end_at',
+        'is_featured'
     ];
 
     function getDefaultListingFields()
@@ -55,6 +56,7 @@ class Slider extends BaseModel
 
             AllowedFilter::scope('end_at_from', 'endFrom'),
             AllowedFilter::scope('end_at_to', 'endTo'),
+            AllowedFilter::exact('is_featured'),
         ];
     }
 }

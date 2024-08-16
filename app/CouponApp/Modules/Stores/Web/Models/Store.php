@@ -22,6 +22,7 @@ class Store extends BaseModel
         'slug',
         'country_id',
         'is_active',
+        'is_featured'
     ];
 
     function getDefaultListingFields()
@@ -51,6 +52,7 @@ class Store extends BaseModel
             AllowedFilter::exact('country_id'),
             AllowedFilter::exact('slug'),
             AllowedFilter::exact('is_active'),
+            AllowedFilter::exact('is_featured'),
         ];
     }
 

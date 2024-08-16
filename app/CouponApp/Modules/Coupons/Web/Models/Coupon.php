@@ -3,9 +3,11 @@
 namespace App\CouponApp\Modules\Coupons\Web\Models;
 
 use App\CouponApp\BaseCode\Models\BaseModel;
+use App\CouponApp\Modules\Categories\Web\Models\Category;
 use App\CouponApp\Modules\Countries\Web\Models\Country;
 use App\CouponApp\Modules\CouponReactions\Web\Models\CouponReaction;
 use App\CouponApp\Modules\FavouriteCoupons\Web\Models\FavouriteCoupon;
+use App\CouponApp\Modules\Stores\Web\Models\Store;
 use Spatie\QueryBuilder\AllowedFilter;
 use TCG\Voyager\Traits\Translatable;
 
@@ -26,6 +28,8 @@ class Coupon extends BaseModel
         'end_at',
         'is_active',
         'store_id',
+        'is_featured',
+        'category_id',
     ];
 
     function getDefaultListingFields()
@@ -42,6 +46,16 @@ class Coupon extends BaseModel
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function reactions()
@@ -96,7 +110,7 @@ class Coupon extends BaseModel
 
     public function getAllowedIncludes()
     {
-        return ['country', 'reactions', 'translations', 'likeReactionsCount', 'dislikeReactionsCount'];
+        return ['country', 'reactions', 'translations', 'likeReactionsCount', 'dislikeReactionsCount','store','category'];
     }
 
     public function getAllowedFilters()
@@ -104,6 +118,8 @@ class Coupon extends BaseModel
         return [
             AllowedFilter::exact('name'),
             AllowedFilter::exact('country_id'),
+            AllowedFilter::exact('is_featured'),
+            AllowedFilter::exact('category_id'),
             AllowedFilter::exact('store_id'),
             AllowedFilter::exact('url'),
             AllowedFilter::exact('logo'),

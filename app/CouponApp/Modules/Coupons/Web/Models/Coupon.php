@@ -69,7 +69,7 @@ class Coupon extends BaseModel
         $customerId = CustomerAuth()->id();
         return $this->favouriteCoupons()
             ->where('customer_id', $customerId)
-            ->where('country_id', CustomerAuth()->user()->country_id)
+            ->where('country_id', app('country_id'))
             ->exists();
     }
 
@@ -81,7 +81,7 @@ class Coupon extends BaseModel
                 'customer_id' => $customerId,
                 'coupon_id' => $this->id,
                 'store_id' => $this->store_id,
-                'country_id' => CustomerAuth()->user()->country_id,
+                'country_id' => app('country_id'),
             ]);
     }
 
@@ -90,7 +90,7 @@ class Coupon extends BaseModel
         $customerId = CustomerAuth()->id();
         return $this->favouriteCoupons()
             ->where('customer_id', $customerId)
-            ->where('country_id', CustomerAuth()->user()->country_id)
+            ->where('country_id', app('country_id'))
             ->delete();
     }
 
@@ -117,10 +117,11 @@ class Coupon extends BaseModel
 
     public function getIsFavoriteAttribute()
     {
+        $countryId = request()->get('country_id');
         $customerId = CustomerAuth()->id();
         return $this->favouriteCoupons()
             ->where('customer_id', $customerId)
-            ->where('country_id', CustomerAuth()->user()->country_id)
+            ->where('country_id', app('country_id'))
             ->exists();
     }
 }

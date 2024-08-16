@@ -26,7 +26,17 @@ abstract class BaseService
         $response = $this->response();
         if (request('listing'))
             return $response->setData($this->repository->minimalListWithFilter())->setStatusCode(200);
-        return $response->setData($this->repository->all())->setStatusCode(200);
+        $paginator = $this->repository->all();
+        return $response
+            ->setData($paginator->items() ?? [])
+            ->setMeta([
+                'currentPage' => $paginator->currentPage(),
+                'lastPage' => $paginator->lastPage(),
+                'path' => $paginator->path(),
+                'perPage' => $paginator->perPage(),
+                'total' => $paginator->total(),
+            ])
+            ->setStatusCode(200);
     }
 
     public function find(BaseRequest $request, $id)

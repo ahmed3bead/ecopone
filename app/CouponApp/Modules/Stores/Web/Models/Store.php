@@ -66,7 +66,7 @@ class Store extends BaseModel
         $customerId = CustomerAuth()->id();
         return $this->favouriteStores()
             ->where('customer_id', $customerId)
-            ->where('country_id', CustomerAuth()->user()->country_id)
+            ->where('country_id', app('country_id'))
             ->exists();
     }
 
@@ -80,7 +80,7 @@ class Store extends BaseModel
         $customerId = CustomerAuth()->id();
         return $this->favouriteStores()
             ->where('customer_id', $customerId)
-            ->where('country_id', CustomerAuth()->user()->country_id)
+            ->where('country_id', app('country_id'))
             ->delete();
     }
 }

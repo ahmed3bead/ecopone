@@ -16,15 +16,7 @@ class CountryScope implements Scope
     public function apply(Builder $builder, Model $model): void
     {
         if (Schema::hasColumn($model->getTable(), 'country_id')) {
-            $countryId = $this->getDefaultCountryId();
-
-            if (CustomerAuth()->check()) {
-                $countryId = CustomerAuth()->user()->country_id;
-            }
-
-            if ($countryId) {
-                $builder->where('country_id', $countryId);
-            }
+                $builder->where('country_id', app('country_id'));
         }
 
     }
@@ -32,7 +24,7 @@ class CountryScope implements Scope
     private function getCountryId()
     {
         if (CustomerAuth()->check()) {
-            return CustomerAuth()->user()->country_id;
+            return app('country_id');
         }
         // Default country ID logic
         return $this->getDefaultCountryId();

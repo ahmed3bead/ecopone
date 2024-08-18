@@ -149,11 +149,15 @@ abstract class BaseModel extends Model implements IModel
 
     public function getImageAttribute($value)
     {
+        if (!$value)
+            return null;
         return url(Storage::url($value));
     }
 
     public function getLogoAttribute($value)
     {
+        if (!$value)
+            return null;
         return url(Storage::url($value));
     }
 
@@ -175,7 +179,7 @@ abstract class BaseModel extends Model implements IModel
 
     function getDefaultListingFields()
     {
-        return ['id','title'];
+        return ['id', 'title'];
     }
 
     function getAllowedFilters()
@@ -257,7 +261,8 @@ abstract class BaseModel extends Model implements IModel
         );
     }
 
-    public function setSlugAttribute(){
-        $this->attributes['slug'] = Str::slug($this->title , "-");
+    public function setSlugAttribute()
+    {
+        $this->attributes['slug'] = Str::slug($this->title, "-");
     }
 }

@@ -11,7 +11,7 @@ use Spatie\QueryBuilder\AllowedFilter;
 
 class Customer extends BaseAuthModel
 {
-    protected $appends = ['logo_url'];
+    protected $appends = [];
 
     protected $fillable = [
         'name',

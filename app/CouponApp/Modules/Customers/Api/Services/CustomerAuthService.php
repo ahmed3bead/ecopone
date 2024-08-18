@@ -14,18 +14,21 @@ use Illuminate\Support\Facades\Hash;
 class CustomerAuthService extends BaseService
 {
 
+    public $guard = 'customers';
+
     public function __construct(CustomerAuthRepository $repository)
     {
         parent::__construct($repository);
         $this->repository = $repository;
     }
-    public function register($request,array $data)
+
+    public function register($request, array $data)
     {
         $data['password'] = Hash::make($data['password']);
         return $this->repository->create($data);
     }
 
-    public function login($request,array $credentials)
+    public function login($request, array $credentials)
     {
         $user = Customer::where('email', $request->email)->first();
         if ($user) {
@@ -65,17 +68,19 @@ class CustomerAuthService extends BaseService
     public function sendEmailOtp(\App\CouponApp\Modules\Customers\Api\Requests\Auth\SendEmailOtpRequest $request, mixed $validated)
     {
         $user = Customer::where('email', $request->email)->first();
-        if($user){
-            $otp = LaraMultiAuth::guard('api')->forgetPassword($request->email);
+
+        if ($user) {
+            $otp = LaraMultiAuth::guard($this->guard)->generateAndSendOtp($request->email);
+            dd($otp);
             return $this->response()
                 ->setData([
-                    'status'=>true
+                    'status' => true
                 ])
                 ->setStatusCode(HttpStatus::HTTP_OK)->json();
-        }else{
+        } else {
             return $this->response()
                 ->setData([
-                    'status'=>false
+                    'status' => false
                 ])
                 ->setStatusCode(HttpStatus::HTTP_OK)->json();
         }
@@ -84,17 +89,17 @@ class CustomerAuthService extends BaseService
     public function verifyEmailOtp(\App\CouponApp\Modules\Customers\Api\Requests\Auth\VerifyEmailOtpRequest $request, mixed $validated)
     {
         $user = Customer::where('email', $request->email)->first();
-        if($user){
-            $otp = LaraMultiAuth::guard('api')->verifyOtp($request->email,$request->otp);
+        if ($user) {
+            $otp = LaraMultiAuth::guard($this->guard)->verifyOtp($request->email, $request->otp);
             return $this->response()
                 ->setData([
-                    'status'=>$otp
+                    'status' => $otp
                 ])
                 ->setStatusCode(HttpStatus::HTTP_OK)->json();
-        }else{
+        } else {
             return $this->response()
                 ->setData([
-                    'status'=>false
+                    'status' => false
                 ])
                 ->setStatusCode(HttpStatus::HTTP_OK)->json();
         }
@@ -103,15 +108,15 @@ class CustomerAuthService extends BaseService
     public function resetPassword(\App\CouponApp\Modules\Customers\Api\Requests\Auth\ResetPasswordRequest $request, mixed $validated)
     {
         $user = Customer::where('email', $request->email)->first();
-        if($user){
-            $otp = LaraMultiAuth::guard('api')->verifyOtp($request->email,$request->otp);
+        if ($user) {
+            $otp = LaraMultiAuth::guard($this->guard)->resetPassword(['identifier' => $request->email, 'otp' => $request->otp]);
             return $this->response()
                 ->setData($otp)
                 ->setStatusCode(HttpStatus::HTTP_OK)->json();
-        }else{
+        } else {
             return $this->response()
                 ->setData([
-                    'status'=>false
+                    'status' => false
                 ])
                 ->setStatusCode(HttpStatus::HTTP_OK)->json();
         }

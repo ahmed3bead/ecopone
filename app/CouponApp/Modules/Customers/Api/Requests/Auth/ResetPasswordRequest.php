@@ -20,4 +20,9 @@ class ResetPasswordRequest extends BaseRequest
             'password' => 'required|string|min:8|confirmed',
         ];
     }
+
+    protected function passedValidation()
+    {
+        $this->merge(['identifier'=>$this->email]);
+    }
 }

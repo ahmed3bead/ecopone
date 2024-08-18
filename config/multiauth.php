@@ -20,11 +20,11 @@ return [
                 'password' => 'password'
             ]
         ],
-        'api' => [
+        'customers' => [
             'model' => \App\CouponApp\Modules\Customers\Web\Models\Customer::class, // change to you user model
             'otp_notify_type' => 'email',
             'authFields' => [
-                'username' => ['email', 'name'],
+                'username' => ['email'],
                 'password' => 'password'
             ]
         ],

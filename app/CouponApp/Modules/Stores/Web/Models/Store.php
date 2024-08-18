@@ -16,14 +16,13 @@ class Store extends BaseModel
     use HasSlug;
     protected $appends = ['formatted_translations','is_favorite'];
 
-    protected $translatable = ['slug','name', 'description'];
+    protected $translatable = ['name', 'description'];
 
     protected $fillable = [
         'name',
         'url',
         'logo',
         'description',
-        'slug',
         'country_id',
         'is_active',
         'is_featured'

@@ -7,6 +7,7 @@ use App\CouponApp\Modules\Countries\Web\Models\Country;
 use App\CouponApp\Modules\Coupons\Web\Models\Coupon;
 use App\CouponApp\Modules\Customers\Web\Models\Customer;
 use App\CouponApp\Modules\Stores\Web\Models\Store;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\QueryBuilder\AllowedFilter;
 
 class FavouriteCoupon extends BaseModel
@@ -47,10 +48,26 @@ class FavouriteCoupon extends BaseModel
     public function getAllowedFilters()
     {
         return [
+            AllowedFilter::scope('name','filterByCouponOrStore'),
+
             AllowedFilter::exact('store_id'),
             AllowedFilter::exact('coupon_id'),
             AllowedFilter::exact('customer_id'),
             AllowedFilter::exact('country_id'),
         ];
+    }
+
+    public function scopeFilterByCouponOrStore(Builder $query, $couponName = null, $storeName = null)
+    {
+        return $query->when($couponName, function ($query, $couponName) {
+            $query->whereHas('coupon', function ($query) use ($couponName) {
+                $query->whereRaw("LOWER(`name`) LIKE ? ",['%'.strtolower($couponName).'%']);
+            });
+        })
+            ->when($storeName, function ($query, $storeName) {
+                $query->whereHas('store', function ($query) use ($storeName) {
+                    $query->whereRaw("LOWER(`name`) LIKE ? ",['%'.strtolower($storeName).'%']);
+                });
+            });
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\CouponApp\Modules\Coupons\Web\Models;
 
+use App\CouponApp\BaseCode\Filters\KeywordSearchFilter;
 use App\CouponApp\BaseCode\Models\BaseModel;
 use App\CouponApp\Modules\Categories\Web\Models\Category;
 use App\CouponApp\Modules\Countries\Web\Models\Country;
@@ -10,6 +11,7 @@ use App\CouponApp\Modules\FavouriteCoupons\Web\Models\FavouriteCoupon;
 use App\CouponApp\Modules\Stores\Web\Models\Store;
 use Spatie\QueryBuilder\AllowedFilter;
 use TCG\Voyager\Traits\Translatable;
+use Illuminate\Database\Eloquent\Builder;
 
 class Coupon extends BaseModel
 {
@@ -122,7 +124,7 @@ class Coupon extends BaseModel
     public function getAllowedFilters()
     {
         return [
-            AllowedFilter::exact('name'),
+            AllowedFilter::custom('name',new KeywordSearchFilter(['name'])),
             AllowedFilter::exact('country_id'),
             AllowedFilter::exact('is_featured'),
             AllowedFilter::exact('category_id'),
@@ -146,4 +148,6 @@ class Coupon extends BaseModel
             ->where('country_id', app('country_id'))
             ->exists();
     }
+
+
 }

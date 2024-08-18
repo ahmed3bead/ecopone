@@ -1,8 +1,0 @@
-<?php
-
-namespace App\CouponApp\Modules\{{ modulePluralPascal }}\{{ portalType }}\Models;
-use App\CouponApp\Modules\{{ modulePluralPascal }}\Web\Models\{{ className }} as ParentModel;
-class {{ className }} extends ParentModel
-{
-    // Add any additional API-specific methods or overrides here
-}

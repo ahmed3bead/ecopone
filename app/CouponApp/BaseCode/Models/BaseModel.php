@@ -147,6 +147,17 @@ abstract class BaseModel extends Model implements IModel
         return null; // Or return a placeholder image URL if desired
     }
 
+    public function getImageAttribute($value)
+    {
+        return url(Storage::url($value));
+    }
+
+    public function getLogoAttribute($value)
+    {
+        return url(Storage::url($value));
+    }
+
+
     public function getFormattedTranslationsAttribute()
     {
         $translations = $this->translations()->get();

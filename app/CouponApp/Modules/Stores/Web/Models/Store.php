@@ -14,7 +14,7 @@ class Store extends BaseModel
 {
     use Translatable;
     use HasSlug;
-    protected $appends = ['logo_url','formatted_translations','is_favorite'];
+    protected $appends = ['formatted_translations','is_favorite'];
 
     protected $translatable = ['slug','name', 'description'];
 

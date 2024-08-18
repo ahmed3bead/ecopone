@@ -20,7 +20,7 @@ class Coupon extends BaseModel
 
 
     protected $translatable = ['name','description'];
-    protected $appends = ['logo_url','is_favorite','formatted_translations'];
+    protected $appends = ['is_favorite','formatted_translations'];
     protected $fillable = [
         'name',
         'country_id',

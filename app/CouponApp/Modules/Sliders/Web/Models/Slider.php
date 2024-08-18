@@ -10,7 +10,7 @@ use TCG\Voyager\Traits\Translatable;
 class Slider extends BaseModel
 {
     use Translatable;
-    protected $appends = ['formatted_translations'];
+    protected $appends = ['logo_url','formatted_translations'];
 
     protected $translatable = ['name'];
 

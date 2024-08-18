@@ -15,7 +15,7 @@ class Category extends BaseModel
     protected $appends = ['formatted_translations'];
 
 
-    protected $translatable = ['slug', 'name'];
+    protected $translatable = ['name'];
 
     protected $table = 'categories';
 

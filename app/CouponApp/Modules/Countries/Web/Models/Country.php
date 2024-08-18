@@ -11,7 +11,7 @@ class Country extends BaseModel
     use Translatable;
     protected $appends = ['formatted_translations'];
 
-    protected $translatable = ['name','code'];
+    protected $translatable = ['name'];
 
     protected $fillable = [
         'name',

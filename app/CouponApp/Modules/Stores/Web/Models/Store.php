@@ -7,13 +7,11 @@ use App\CouponApp\Modules\Countries\Web\Models\Country;
 use App\CouponApp\Modules\FavouriteStores\Web\Models\FavouriteStore;
 use Spatie\QueryBuilder\AllowedFilter;
 use TCG\Voyager\Traits\Translatable;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
+
 
 class Store extends BaseModel
 {
     use Translatable;
-    use HasSlug;
     protected $appends = ['formatted_translations','is_favorite'];
 
     protected $translatable = ['name', 'description'];
@@ -28,15 +26,6 @@ class Store extends BaseModel
         'is_featured'
     ];
 
-    /**
-     * Get the options for generating the slug.
-     */
-    public function getSlugOptions() : SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('name')
-            ->saveSlugsTo('slug');
-    }
 
     function getDefaultListingFields()
     {

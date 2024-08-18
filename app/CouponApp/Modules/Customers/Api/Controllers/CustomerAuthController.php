@@ -37,22 +37,22 @@ class CustomerAuthController extends BaseApiController
 
     public function sendEmailOtp(SendEmailOtpRequest $request)
     {
-        // Implement sending email OTP logic
+        return $this->authService->sendEmailOtp($request,$request->validated());
     }
 
     public function verifyEmailOtp(VerifyEmailOtpRequest $request)
     {
-        // Implement verifying email OTP logic
+        return $this->authService->verifyEmailOtp($request,$request->validated());
     }
 
     public function sendResetLink(SendResetLinkRequest $request)
     {
-        // Implement sending reset link logic
+        return $this->authService->sendResetLink($request,$request->validated());
     }
 
     public function resetPassword(ResetPasswordRequest $request)
     {
-        // Implement resetting password logic
+        return $this->authService->resetPassword($request,$request->validated());
     }
 
     public function socialAuth(SocialAuthRequest $request)

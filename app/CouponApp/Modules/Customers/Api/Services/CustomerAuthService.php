@@ -2,6 +2,7 @@
 
 namespace App\CouponApp\Modules\Customers\Api\Services;
 
+use AhmedEbead\LaraMultiAuth\Facades\LaraMultiAuth;
 use App\CouponApp\BaseCode\Http\HttpStatus;
 use App\CouponApp\Modules\Customers\Api\Repositories\CustomerAuthRepository;
 
@@ -61,6 +62,64 @@ class CustomerAuthService extends BaseService
             ->setStatusCode(HttpStatus::HTTP_OK)->json();
     }
 
+    public function sendEmailOtp(\App\CouponApp\Modules\Customers\Api\Requests\Auth\SendEmailOtpRequest $request, mixed $validated)
+    {
+        $user = Customer::where('email', $request->email)->first();
+        if($user){
+            $otp = LaraMultiAuth::guard('api')->forgetPassword($request->email);
+            return $this->response()
+                ->setData([
+                    'status'=>true
+                ])
+                ->setStatusCode(HttpStatus::HTTP_OK)->json();
+        }else{
+            return $this->response()
+                ->setData([
+                    'status'=>false
+                ])
+                ->setStatusCode(HttpStatus::HTTP_OK)->json();
+        }
+    }
 
-    // Add any additional API-specific methods or overrides here
+    public function verifyEmailOtp(\App\CouponApp\Modules\Customers\Api\Requests\Auth\VerifyEmailOtpRequest $request, mixed $validated)
+    {
+        $user = Customer::where('email', $request->email)->first();
+        if($user){
+            $otp = LaraMultiAuth::guard('api')->verifyOtp($request->email,$request->otp);
+            return $this->response()
+                ->setData([
+                    'status'=>$otp
+                ])
+                ->setStatusCode(HttpStatus::HTTP_OK)->json();
+        }else{
+            return $this->response()
+                ->setData([
+                    'status'=>false
+                ])
+                ->setStatusCode(HttpStatus::HTTP_OK)->json();
+        }
+    }
+
+    public function resetPassword(\App\CouponApp\Modules\Customers\Api\Requests\Auth\ResetPasswordRequest $request, mixed $validated)
+    {
+        $user = Customer::where('email', $request->email)->first();
+        if($user){
+            $otp = LaraMultiAuth::guard('api')->verifyOtp($request->email,$request->otp);
+            return $this->response()
+                ->setData($otp)
+                ->setStatusCode(HttpStatus::HTTP_OK)->json();
+        }else{
+            return $this->response()
+                ->setData([
+                    'status'=>false
+                ])
+                ->setStatusCode(HttpStatus::HTTP_OK)->json();
+        }
+    }
+
+    public function sendResetLink(\App\CouponApp\Modules\Customers\Api\Requests\Auth\SendResetLinkRequest $request, mixed $validated)
+    {
+    }
+
+
 }

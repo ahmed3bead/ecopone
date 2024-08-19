@@ -40,7 +40,12 @@
                 ){
                     continue;
                 }
-dd($action);
+                if(
+                    $action::class != "TCG\Voyager\Actions\ViewAction"
+                ){
+                    dd($action);
+                }
+
             @endphp
             @if (method_exists($action, 'massAction'))
                 @include('voyager::bread.partials.actions', ['action' => $action, 'data' => null])

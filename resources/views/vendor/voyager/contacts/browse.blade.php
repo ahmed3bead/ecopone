@@ -24,33 +24,9 @@
                 </a>
             @endif
         @endcan
-        @can('delete', app($dataType->model_name))
-            @if($usesSoftDeletes)
-                <input type="checkbox" @if ($showSoftDeleted) checked @endif id="show_soft_deletes" data-toggle="toggle" data-on="{{ __('voyager::bread.soft_deletes_off') }}" data-off="{{ __('voyager::bread.soft_deletes_on') }}">
-            @endif
-        @endcan
 
-        @foreach($actions as $action)
-            @php
 
-                if(
-                    $action::class == "TCG\Voyager\Actions\DeleteAction"
-                || $action::class == "TCG\Voyager\Actions\RestoreAction"
-                || $action::class == "TCG\Voyager\Actions\EditAction"
-                ){
-                    continue;
-                }
-                if(
-                    $action::class != "TCG\Voyager\Actions\ViewAction"
-                ){
-                    dd($action);
-                }
 
-            @endphp
-            @if (method_exists($action, 'massAction'))
-                @include('voyager::bread.partials.actions', ['action' => $action, 'data' => null])
-            @endif
-        @endforeach
         @include('voyager::multilingual.language-selector')
     </div>
 @stop
@@ -271,18 +247,8 @@
                                                 @endif
                                             </td>
                                         @endforeach
-                                        <td class="no-sort no-click bread-actions">
-                                            @foreach($actions as $action)
-                                                @php
-                                                    if($action::class == "TCG\Voyager\Actions\DeleteAction"){
-                                                        continue;
-                                                    }
-                                                @endphp
-                                                @if (!method_exists($action, 'massAction'))
-                                                    @include('voyager::bread.partials.actions', ['action' => $action])
-                                                @endif
-                                            @endforeach
-                                        </td>
+
+
                                     </tr>
                                 @endforeach
                                 </tbody>

@@ -35,8 +35,8 @@
 
                 if(
                     $action::class == "TCG\Voyager\Actions\DeleteAction"
-                OR $action::class == "TCG\Voyager\Actions\RestoreAction"
-                OR $action::class == "TCG\Voyager\Actions\EditAction"
+                || $action::class == "TCG\Voyager\Actions\RestoreAction"
+                || $action::class == "TCG\Voyager\Actions\EditAction"
                 ){
                     continue;
                 }

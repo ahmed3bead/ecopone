@@ -33,10 +33,14 @@
         @foreach($actions as $action)
             @php
 
-                if($action::class == "TCG\Voyager\Actions\DeleteAction"){
+                if(
+                    $action::class == "TCG\Voyager\Actions\DeleteAction"
+                OR $action::class == "TCG\Voyager\Actions\RestoreAction"
+                OR $action::class == "TCG\Voyager\Actions\EditAction"
+                ){
                     continue;
                 }
-                dd($action);
+
             @endphp
             @if (method_exists($action, 'massAction'))
                 @include('voyager::bread.partials.actions', ['action' => $action, 'data' => null])

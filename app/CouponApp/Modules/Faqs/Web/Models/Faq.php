@@ -10,6 +10,7 @@ class Faq extends BaseModel
 {
     use Translatable;
 
+    protected $appends = ['formatted_translations'];
 
 
     protected $translatable = ['slug','name','question','answer'];
@@ -36,6 +37,6 @@ class Faq extends BaseModel
 
     public function getAllowedIncludes()
     {
-        return ['translations', 'faqCategory'];
+        return ['faqCategory'];
     }
 }

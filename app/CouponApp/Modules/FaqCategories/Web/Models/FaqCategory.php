@@ -12,7 +12,7 @@ class FaqCategory extends BaseModel
 
     use Translatable;
 
-
+    protected $appends = ['formatted_translations'];
     protected $translatable = ['name'];
 
     protected $fillable = [

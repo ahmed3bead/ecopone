@@ -7,7 +7,11 @@ use App\CouponApp\BaseCode\Models\BaseModel;
 class Contact extends BaseModel
 {
     protected $fillable = [
-        // Your fillable attributes
+        'email',
+        'full_name',
+        'reason',
+        'message',
+        'phone',
     ];
 
 

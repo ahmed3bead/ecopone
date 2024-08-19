@@ -18,9 +18,9 @@ class KeywordSearchFilterInTranslations implements Filter
         $query->where(function ($query) use ($value){
             foreach ($this->fields as $key => $field){
                 if($key == 0)
-                    $query->where($field."->en",'LIKE','%'.strtolower($value . '').'%');
+                    $query->whereTranslation($field,'LIKE','%'.strtolower($value . '').'%');
                 else
-                    $query->where($field."->ar",'LIKE','%'.strtolower($value . '').'%');
+                    $query->whereTranslation($field,'LIKE','%'.strtolower($value . '').'%');
             }
         });
     }

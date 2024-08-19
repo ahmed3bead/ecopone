@@ -21,6 +21,8 @@ class Customer extends BaseAuthModel
         'country_id',
         'remember_token',
         'logo',
+        'gender',
+        'birthdate'
     ];
     function getDefaultListingFields()
     {

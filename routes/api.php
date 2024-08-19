@@ -66,9 +66,8 @@ Route::middleware('api')->group(function () {
     Route::apiResource('coupon-reactions', CouponReactionController::class);
     Route::apiResource('faq-categories', \App\CouponApp\Modules\FaqCategories\Api\Controllers\FaqCategoryController::class);
     Route::apiResource('faqs', \App\CouponApp\Modules\Faqs\Api\Controllers\FaqController::class);
-
+    Route::apiResource('contacts', \App\CouponApp\Modules\Contacts\Api\Controllers\ContactController::class);
 
 });
 
 
-Route::apiResource('contacts', \App\CouponApp\Modules\Contacts\Api\Controllers\ContactController::class);

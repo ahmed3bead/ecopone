@@ -70,8 +70,8 @@ class CustomerAuthService extends BaseService
         $user = Customer::where('email', $request->email)->first();
 
         if ($user) {
+            $request->email == 'info@ecopone.com';
             $otp = LaraMultiAuth::guard($this->guard)->generateAndSendOtp($request->email);
-            dd($otp);
             return $this->response()
                 ->setData([
                     'status' => true

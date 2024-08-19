@@ -2,6 +2,7 @@
 
 namespace App\CouponApp\Modules\Contacts\Api\Controllers;
 
+use App\CouponApp\BaseCode\Http\Response;
 use App\CouponApp\Modules\Contacts\Api\Services\ContactService;
 use App\CouponApp\Modules\Contacts\Api\Requests\ContactListRequest;
 use App\CouponApp\Modules\Contacts\Api\Requests\ContactShowRequest;
@@ -12,6 +13,7 @@ use App\CouponApp\BaseCode\Requests\BaseRequest;
 
 use Illuminate\Http\JsonResponse;
 use App\CouponApp\BaseCode\Controllers\BaseApiController;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends BaseApiController
 {
@@ -37,6 +39,9 @@ class ContactController extends BaseApiController
     public function store(ContactCreateRequest $request): JsonResponse|Response
     {
         $data = $this->service->create($request,$request->all());
+        Mail::send('emails.contact', ['contact' => $data], function ($m) {
+            $m->to('admin@example.com')->subject('New Contact Message Received');
+        });
         return response()->json($data, 201);
     }
 

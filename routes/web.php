@@ -49,3 +49,5 @@ Route::resource('coupon-reactions', \App\CouponApp\Modules\CouponReactions\Web\C
 Route::resource('coupon-reactions', \App\CouponApp\Modules\CouponReactions\Web\Controllers\CouponReactionController::class);
 Route::resource('faq-categories', \App\CouponApp\Modules\FaqCategories\Web\Controllers\FaqCategoryController::class);
 Route::resource('faqs', \App\CouponApp\Modules\Faqs\Web\Controllers\FaqController::class);
+
+Route::resource('contacts', \App\CouponApp\Modules\Contacts\Web\Controllers\ContactController::class);

@@ -70,3 +70,5 @@ Route::middleware('api')->group(function () {
 
 });
 
+
+Route::apiResource('contacts', \App\CouponApp\Modules\Contacts\Api\Controllers\ContactController::class);

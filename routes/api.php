@@ -51,18 +51,22 @@ Route::middleware('api')->group(function () {
         Route::post('/stores/add-to-favourite/{id}',[StoreController::class, 'addToFavourite']);
         Route::delete('/stores/remove-from-favourite/{id}',[StoreController::class, 'removeFromFavourite']);
 
+        Route::apiResource('coupon-reactions', CouponReactionController::class);
+        Route::apiResource('favourite-stores', FavouriteStoreController::class);
+        Route::apiResource('favourite-coupons', FavouriteCouponController::class);
+
     });
 
     Route::apiResource('coupons', CouponController::class);
-    Route::apiResource('customers', CustomerController::class);
     Route::apiResource('sliders', SliderController::class);
     Route::apiResource('categories', CategoryController::class);
     Route::apiResource('stores', StoreController::class);
     Route::apiResource('countries', CountryController::class);
+
     Route::apiResource('coupon-reactions', CouponReactionController::class);
-    Route::apiResource('favourite-stores', FavouriteStoreController::class);
-    Route::apiResource('favourite-coupons', FavouriteCouponController::class);
-    Route::apiResource('coupon-reactions', CouponReactionController::class);
+    Route::apiResource('faq-categories', \App\CouponApp\Modules\FaqCategories\Api\Controllers\FaqCategoryController::class);
+    Route::apiResource('faqs', \App\CouponApp\Modules\Faqs\Api\Controllers\FaqController::class);
 
 
 });
+

@@ -261,8 +261,8 @@ abstract class BaseModel extends Model implements IModel
         );
     }
 
-    public function setSlugAttribute()
-    {
-        $this->attributes['slug'] = Str::slug($this->title, "-");
-    }
+//    public function setSlugAttribute()
+//    {
+//        $this->attributes['slug'] = Str::slug($this->title, "-");
+//    }
 }

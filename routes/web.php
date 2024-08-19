@@ -24,8 +24,8 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
-Route::resource('categorys', \App\CouponApp\Modules\Categories\Web\Controllers\CategoryController::class);
-Route::resource('countrys', \App\CouponApp\Modules\Countries\Web\Controllers\CountryController::class);
+Route::resource('categories', \App\CouponApp\Modules\Categories\Web\Controllers\CategoryController::class);
+Route::resource('countries', \App\CouponApp\Modules\Countries\Web\Controllers\CountryController::class);
 Route::resource('coupons', \App\CouponApp\Modules\Coupons\Web\Controllers\CouponController::class);
 Route::resource('stores', \App\CouponApp\Modules\Stores\Web\Controllers\StoreController::class);
 Route::resource('customers', \App\CouponApp\Modules\Customers\Web\Controllers\CustomerController::class);
@@ -47,3 +47,5 @@ Route::resource('coupon-reactions', \App\CouponApp\Modules\CouponReactions\Web\C
 Route::resource('coupon-reactions', \App\CouponApp\Modules\CouponReactions\Web\Controllers\CouponReactionController::class);
 Route::resource('coupon-reactions', \App\CouponApp\Modules\CouponReactions\Web\Controllers\CouponReactionController::class);
 Route::resource('coupon-reactions', \App\CouponApp\Modules\CouponReactions\Web\Controllers\CouponReactionController::class);
+Route::resource('faq-categories', \App\CouponApp\Modules\FaqCategories\Web\Controllers\FaqCategoryController::class);
+Route::resource('faqs', \App\CouponApp\Modules\Faqs\Web\Controllers\FaqController::class);

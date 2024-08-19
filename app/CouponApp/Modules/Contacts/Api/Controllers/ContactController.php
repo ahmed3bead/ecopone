@@ -40,7 +40,7 @@ class ContactController extends BaseApiController
     {
         $data = $this->service->create($request,$request->all());
         Mail::send('emails.contact', ['contact' => $data], function ($m) {
-            $m->to('admin@example.com')->subject('New Contact Message Received');
+            $m->to('info@ecopone.com')->subject('New Contact Message Received');
         });
         return response()->json($data, 201);
     }

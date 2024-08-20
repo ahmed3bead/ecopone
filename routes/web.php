@@ -51,3 +51,4 @@ Route::resource('faq-categories', \App\CouponApp\Modules\FaqCategories\Web\Contr
 Route::resource('faqs', \App\CouponApp\Modules\Faqs\Web\Controllers\FaqController::class);
 
 Route::resource('contacts', \App\CouponApp\Modules\Contacts\Web\Controllers\ContactController::class);
+Route::resource('social-medias', \App\CouponApp\Modules\SocialMedia\Web\Controllers\SocialMediaController::class);

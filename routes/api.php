@@ -34,16 +34,21 @@ Route::middleware('api')->group(function () {
         Route::post('/send-reset-link', [CustomerAuthController::class, 'sendResetLink']);
         Route::post('/reset-password', [CustomerAuthController::class, 'resetPassword']);
         Route::post('/social-auth', [CustomerAuthController::class, 'socialAuth']);
-        Route::post('/refresh-token', [CustomerAuthController::class, 'refreshToken']);
+        Route::post('refresh-token', [CustomerAuthController::class, 'refreshToken']);
         Route::get('/me', [CustomerAuthController::class, 'me'])->middleware('auth:customers');
+        Route::patch('/update-profile', [CustomerController::class, 'updateProfile'])->middleware('auth:customers');
+
+        Route::get('auth/redirect/{provider}', [SocialAuthController::class, 'redirectToProvider']);
+        Route::get('auth/callback/{provider}', [SocialAuthController::class, 'handleProviderCallback']);
     });
 
 
     Route::middleware('auth:customers')->group(function () {
+
         Route::get('/customers/{id}', [CustomerController::class, 'show']);
         Route::put('/customers/{id}', [CustomerController::class, 'update']);
         Route::delete('/customers/{id}', [CustomerController::class, 'delete']);
-        Route::patch('/customers/update-profile', [CustomerController::class, 'updateProfile']);
+
         Route::post('/coupons/add-to-favourite/{id}',[CouponController::class, 'addToFavourite']);
         Route::delete('/coupons/remove-from-favourite/{id}',[CouponController::class, 'removeFromFavourite']);
         Route::post('/coupons/add-new-reaction/{id}',[CouponController::class, 'addNewReaction']);

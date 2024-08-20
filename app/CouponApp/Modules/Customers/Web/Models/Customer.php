@@ -18,6 +18,7 @@ class Customer extends BaseAuthModel
         'email',
         'email_verified_at',
         'password',
+        'mobile',
         'country_id',
         'remember_token',
         'logo',

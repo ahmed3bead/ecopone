@@ -37,7 +37,7 @@ class CustomerAuthService extends BaseService
                 return $this->response()
                     ->setData([
                         'user' => $user,
-                        'token' => $user->createToken('MerchantClient')->accessToken,
+                        'token' => $user->createToken('Customers')->accessToken,
 
                     ])
                     ->setStatusCode(HttpStatus::HTTP_OK)->json();
@@ -103,7 +103,7 @@ class CustomerAuthService extends BaseService
     {
         $user = Customer::where('email', $request->email)->first();
         if ($user) {
-            $otp = LaraMultiAuth::guard($this->guard)->resetPassword(['identifier' => $request->email, 'otp' => $request->otp]);
+            $otp = LaraMultiAuth::guard($this->guard)->resetPassword($request->all(),false);
             return $this->response()
                 ->setData($otp)
                 ->setStatusCode(HttpStatus::HTTP_OK)->json();

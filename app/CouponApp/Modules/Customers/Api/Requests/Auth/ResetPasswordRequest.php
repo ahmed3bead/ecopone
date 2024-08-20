@@ -15,7 +15,6 @@ class ResetPasswordRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'otp' => 'required|string',
             'email' => 'required|email',
             'password' => 'required|string|min:8|confirmed',
         ];
@@ -24,5 +23,6 @@ class ResetPasswordRequest extends BaseRequest
     protected function passedValidation()
     {
         $this->merge(['identifier'=>$this->email]);
+        $this->merge(['identifier_field_name'=>'email']);
     }
 }

@@ -76,8 +76,8 @@ abstract class BaseRepository implements IRepository
     {
         $model = $this->model->find($id);
         if ($model) {
-            $model->update($data);
-            return $model;
+            $model->fill($data)->save();
+            return $model->fresh();
         }
         return null;
     }

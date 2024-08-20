@@ -16,6 +16,7 @@ class CustomerUpdateProfileRequest extends BaseRequest
     {
         return [
             "name" => "sometimes|string",
+            "mobile" => "sometimes|string",
             "birthday" => "sometimes|string",
             "gender" => "sometimes|string"
         ];

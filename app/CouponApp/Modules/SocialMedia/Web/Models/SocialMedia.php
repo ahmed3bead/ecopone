@@ -6,6 +6,7 @@ use App\CouponApp\BaseCode\Models\BaseModel;
 
 class SocialMedia extends BaseModel
 {
+    protected $table = 'social_medias';
     protected $fillable = [
         // Your fillable attributes
     ];

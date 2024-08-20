@@ -3,6 +3,7 @@
 namespace App\CouponApp\Modules\Customers\Api\Controllers;
 
 use App\CouponApp\BaseCode\Http\Response;
+use App\CouponApp\Modules\Customers\Api\Requests\CustomerUpdateProfileRequest;
 use App\CouponApp\Modules\Customers\Api\Services\CustomerService;
 use App\CouponApp\Modules\Customers\Api\Requests\CustomerListRequest;
 use App\CouponApp\Modules\Customers\Api\Requests\CustomerShowRequest;
@@ -42,6 +43,11 @@ class CustomerController extends BaseApiController
     public function update(CustomerUpdateRequest $request, $id): JsonResponse|Response
     {
         return $this->service->update($request,$request->all(),$id);
+    }
+
+    public function updateProfile(CustomerUpdateProfileRequest $request): JsonResponse|Response
+    {
+        return $this->service->update($request,$request->validated(),CustomerAuth()->id());
     }
 
     public function destroy(CustomerDeleteRequest  $request, $id): JsonResponse|Response

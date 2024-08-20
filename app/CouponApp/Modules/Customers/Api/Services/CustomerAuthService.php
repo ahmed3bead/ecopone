@@ -68,24 +68,10 @@ class CustomerAuthService extends BaseService
     public function sendEmailOtp(\App\CouponApp\Modules\Customers\Api\Requests\Auth\SendEmailOtpRequest $request, mixed $validated)
     {
         $user = Customer::where('email', $request->email)->first();
-
-//        MAIL_MAILER=smtp
-//MAIL_HOST=ecopone.com
-//MAIL_PORT=465
-//MAIL_USERNAME=info@ecopone.com
-//MAIL_PASSWORD=J1Kv2{r&qwNt
-//MAIL_ENCRYPTION=ssl
-//MAIL_FROM_ADDRESS=info@ecopone.com
-//MAIL_FROM_NAME="${APP_NAME}"
-
-
         if ($user) {
-            $request->email == 'info@ecopone.com';
             $otp = LaraMultiAuth::guard($this->guard)->generateAndSendOtp($request->email);
             return $this->response()
-                ->setData([
-                    'status' => true
-                ])
+                ->setData($otp)
                 ->setStatusCode(HttpStatus::HTTP_OK)->json();
         } else {
             return $this->response()
@@ -102,9 +88,7 @@ class CustomerAuthService extends BaseService
         if ($user) {
             $otp = LaraMultiAuth::guard($this->guard)->verifyOtp($request->email, $request->otp);
             return $this->response()
-                ->setData([
-                    'status' => $otp
-                ])
+                ->setData($otp)
                 ->setStatusCode(HttpStatus::HTTP_OK)->json();
         } else {
             return $this->response()

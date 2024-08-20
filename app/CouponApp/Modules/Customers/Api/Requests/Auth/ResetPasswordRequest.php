@@ -15,7 +15,7 @@ class ResetPasswordRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'token' => 'required|string',
+            'otp' => 'required|string',
             'email' => 'required|email',
             'password' => 'required|string|min:8|confirmed',
         ];

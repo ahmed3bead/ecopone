@@ -43,7 +43,7 @@ Route::middleware('api')->group(function () {
         Route::get('/customers/{id}', [CustomerController::class, 'show']);
         Route::put('/customers/{id}', [CustomerController::class, 'update']);
         Route::delete('/customers/{id}', [CustomerController::class, 'delete']);
-
+        Route::patch('/customers/update-profile', [CustomerController::class, 'updateProfile']);
         Route::post('/coupons/add-to-favourite/{id}',[CouponController::class, 'addToFavourite']);
         Route::delete('/coupons/remove-from-favourite/{id}',[CouponController::class, 'removeFromFavourite']);
         Route::post('/coupons/add-new-reaction/{id}',[CouponController::class, 'addNewReaction']);

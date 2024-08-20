@@ -38,8 +38,8 @@ class ContactController extends BaseApiController
 
     public function store(ContactCreateRequest $request): JsonResponse|Response
     {
-        $data = $this->service->create($request,$request->all());
-        Mail::send('emails.contact', ['contact' => $request], function ($m) {
+        $data = $this->service->create($request,$request->validated());
+        $sent = Mail::send('emails.contact', ['contact' => $request], function ($m) {
             $m->to('info@ecopone.com')->subject('New Contact Message Received');
         });
         return response()->json($data, 201);

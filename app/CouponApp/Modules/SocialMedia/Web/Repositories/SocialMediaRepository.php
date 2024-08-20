@@ -1,9 +1,9 @@
 <?php
 
-namespace App\CouponApp\Modules\SocialMedias\Web\Repositories;
+namespace App\CouponApp\Modules\SocialMedia\Web\Repositories;
 
 use App\CouponApp\BaseCode\Repositories\BaseRepository;
-use App\CouponApp\Modules\SocialMedias\Web\Models\SocialMedia;
+use App\CouponApp\Modules\SocialMedia\Web\Models\SocialMedia;
 
 class SocialMediaRepository extends BaseRepository
 {

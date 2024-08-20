@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CouponApp\Modules\SocialMedias\Web\Models;
+namespace App\CouponApp\Modules\SocialMedia\Web\Models;
 
 use App\CouponApp\BaseCode\Models\BaseModel;
 

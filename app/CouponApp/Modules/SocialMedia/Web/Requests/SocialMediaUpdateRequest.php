@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CouponApp\Modules\SocialMedias\Web\Requests;
+namespace App\CouponApp\Modules\SocialMedia\Web\Requests;
 
 use App\CouponApp\BaseCode\Requests\BaseRequest;
 

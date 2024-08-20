@@ -1,8 +1,8 @@
 <?php
 
-namespace App\CouponApp\Modules\SocialMedias\Api\Services;
+namespace App\CouponApp\Modules\SocialMedia\Api\Services;
 
-use App\CouponApp\Modules\SocialMedias\Api\Repositories\SocialMediaRepository;
+use App\CouponApp\Modules\SocialMedia\Api\Repositories\SocialMediaRepository;
 
 use App\CouponApp\BaseCode\Services\BaseService;
 

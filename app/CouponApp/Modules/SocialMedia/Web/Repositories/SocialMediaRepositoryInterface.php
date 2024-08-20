@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CouponApp\Modules\SocialMedias\Web\Repositories;
+namespace App\CouponApp\Modules\SocialMedia\Web\Repositories;
 
 interface SocialMediaRepositoryInterface
 {

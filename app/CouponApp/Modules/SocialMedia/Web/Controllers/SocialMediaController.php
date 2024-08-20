@@ -1,16 +1,16 @@
 <?php
 
-namespace App\CouponApp\Modules\SocialMedias\Web\Controllers;
+namespace App\CouponApp\Modules\SocialMedia\Web\Controllers;
 
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
-use App\CouponApp\Modules\SocialMedias\Web\Services\SocialMediaService;
+use App\CouponApp\Modules\SocialMedia\Web\Services\SocialMediaService;
 use Illuminate\Http\Request;
 
-use App\CouponApp\Modules\SocialMedias\Web\Requests\SocialMediaListRequest;
-use App\CouponApp\Modules\SocialMedias\Web\Requests\SocialMediaShowRequest;
-use App\CouponApp\Modules\SocialMedias\Web\Requests\SocialMediaUpdateRequest;
-use App\CouponApp\Modules\SocialMedias\Web\Requests\SocialMediaDeleteRequest;
-use App\CouponApp\Modules\SocialMedias\Web\Requests\SocialMediaCreateRequest;
+use App\CouponApp\Modules\SocialMedia\Web\Requests\SocialMediaListRequest;
+use App\CouponApp\Modules\SocialMedia\Web\Requests\SocialMediaShowRequest;
+use App\CouponApp\Modules\SocialMedia\Web\Requests\SocialMediaUpdateRequest;
+use App\CouponApp\Modules\SocialMedia\Web\Requests\SocialMediaDeleteRequest;
+use App\CouponApp\Modules\SocialMedia\Web\Requests\SocialMediaCreateRequest;
 use App\CouponApp\BaseCode\Requests\BaseRequest;
 
 use App\CouponApp\BaseCode\Controllers\BaseApiController;

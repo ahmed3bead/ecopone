@@ -1,13 +1,13 @@
 <?php
 
-namespace App\CouponApp\Modules\SocialMedias\Api\Controllers;
+namespace App\CouponApp\Modules\SocialMedia\Api\Controllers;
 
-use App\CouponApp\Modules\SocialMedias\Api\Services\SocialMediaService;
-use App\CouponApp\Modules\SocialMedias\Api\Requests\SocialMediaListRequest;
-use App\CouponApp\Modules\SocialMedias\Api\Requests\SocialMediaShowRequest;
-use App\CouponApp\Modules\SocialMedias\Api\Requests\SocialMediaUpdateRequest;
-use App\CouponApp\Modules\SocialMedias\Api\Requests\SocialMediaDeleteRequest;
-use App\CouponApp\Modules\SocialMedias\Api\Requests\SocialMediaCreateRequest;
+use App\CouponApp\Modules\SocialMedia\Api\Services\SocialMediaService;
+use App\CouponApp\Modules\SocialMedia\Api\Requests\SocialMediaListRequest;
+use App\CouponApp\Modules\SocialMedia\Api\Requests\SocialMediaShowRequest;
+use App\CouponApp\Modules\SocialMedia\Api\Requests\SocialMediaUpdateRequest;
+use App\CouponApp\Modules\SocialMedia\Api\Requests\SocialMediaDeleteRequest;
+use App\CouponApp\Modules\SocialMedia\Api\Requests\SocialMediaCreateRequest;
 use App\CouponApp\BaseCode\Requests\BaseRequest;
 
 use Illuminate\Http\JsonResponse;

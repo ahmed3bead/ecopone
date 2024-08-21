@@ -55,6 +55,11 @@ class CustomerAuthController extends BaseApiController
         return $this->authService->resetPassword($request,$request->validated());
     }
 
+    public function deleteAccount(ResetPasswordRequest $request)
+    {
+        return $this->authService->deleteAccount($request,$request->validated());
+    }
+
     public function socialAuth(SocialAuthRequest $request)
     {
         // Implement social authentication logic
@@ -67,6 +72,6 @@ class CustomerAuthController extends BaseApiController
 
     public function me(MeRequest $request)
     {
-        return response()->json(Auth::user());
+        return response()->json(CustomerAuth()->user());
     }
 }

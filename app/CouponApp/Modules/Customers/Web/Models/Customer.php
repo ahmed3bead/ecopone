@@ -5,6 +5,8 @@ namespace App\CouponApp\Modules\Customers\Web\Models;
 use App\CouponApp\BaseCode\Models\BaseAuthModel;
 use App\CouponApp\Modules\Countries\Web\Models\Country;
 use App\CouponApp\Modules\CouponReactions\Web\Models\CouponReaction;
+use App\CouponApp\Modules\FavouriteCoupons\Web\Models\FavouriteCoupon;
+use App\CouponApp\Modules\FavouriteStores\Web\Models\FavouriteStore;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -45,6 +47,14 @@ class Customer extends BaseAuthModel
     public function reactions()
     {
         return $this->hasMany(CouponReaction::class);
+    }
+
+    public function favouriteCoupons()
+    {
+        return $this->hasMany(FavouriteCoupon::class);
+    } public function favouriteStore()
+    {
+        return $this->hasMany(FavouriteStore::class);
     }
 
     public function getAllowedIncludes()

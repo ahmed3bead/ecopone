@@ -103,7 +103,7 @@ class CustomerAuthService extends BaseService
     {
         $user = Customer::where('email', $request->email)->first();
         if ($user) {
-            $otp = LaraMultiAuth::guard($this->guard)->resetPassword($request->all(),false);
+            $otp = LaraMultiAuth::guard($this->guard)->resetPassword($request->all(), false);
             return $this->response()
                 ->setData($otp)
                 ->setStatusCode(HttpStatus::HTTP_OK)->json();
@@ -118,6 +118,18 @@ class CustomerAuthService extends BaseService
 
     public function sendResetLink(\App\CouponApp\Modules\Customers\Api\Requests\Auth\SendResetLinkRequest $request, mixed $validated)
     {
+    }
+
+    public function deleteAccount(\App\CouponApp\Modules\Customers\Api\Requests\Auth\ResetPasswordRequest $request, mixed $validated)
+    {
+        $user = CustomerAuth()->user();
+        $user->reactions()->delete();
+        $user->favouriteCoupons()->delete();
+        $user->favouriteStore()->delete();
+        $user = Customer::where('id', $user->id)->first();
+        $user->delete();
+        $this->logout();
+        return $this->response()->setData([])->setStatusCode(204);
     }
 
 

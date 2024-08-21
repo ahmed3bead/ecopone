@@ -36,10 +36,11 @@ Route::middleware('api')->group(function () {
         Route::post('/social-auth', [CustomerAuthController::class, 'socialAuth']);
         Route::post('refresh-token', [CustomerAuthController::class, 'refreshToken']);
         Route::get('/me', [CustomerAuthController::class, 'me'])->middleware('auth:customers');
+        Route::get('/delete-account', [CustomerAuthController::class, 'deleteAccount'])->middleware('auth:customers');
         Route::patch('/update-profile', [CustomerController::class, 'updateProfile'])->middleware('auth:customers');
 
-        Route::get('auth/redirect/{provider}', [SocialAuthController::class, 'redirectToProvider']);
-        Route::get('auth/callback/{provider}', [SocialAuthController::class, 'handleProviderCallback']);
+//        Route::get('auth/redirect/{provider}', [SocialAuthController::class, 'redirectToProvider']);
+//        Route::get('auth/callback/{provider}', [SocialAuthController::class, 'handleProviderCallback']);
     });
 
 

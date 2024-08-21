@@ -122,11 +122,12 @@ class CustomerAuthService extends BaseService
 
     public function deleteAccount(\App\CouponApp\Modules\Customers\Api\Requests\Auth\ResetPasswordRequest $request, mixed $validated)
     {
-        $user = CustomerAuth()->user();
+        $authUser = CustomerAuth()->user();
+        $user = Customer::where('id', $authUser->id)->first();
         $user->reactions()->delete();
         $user->favouriteCoupons()->delete();
         $user->favouriteStore()->delete();
-        $user = Customer::where('id', $user->id)->first();
+
         $user->delete();
         $this->logout();
         return $this->response()->setData([])->setStatusCode(204);

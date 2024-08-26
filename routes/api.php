@@ -79,3 +79,5 @@ Route::middleware('api')->group(function () {
 
 
 Route::apiResource('social-medias', \App\CouponApp\Modules\SocialMedia\Api\Controllers\SocialMediaController::class);
+
+Route::apiResource('pages', \App\CouponApp\Modules\Pages\Api\Controllers\PageController::class);

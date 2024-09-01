@@ -21,17 +21,19 @@ class CustomersSocialAuthController extends BaseApiController
     {
         $user = Socialite::driver($provider)->user();
 
-        // Find or create a user in your database
-        // For example:
-        $authUser = Customer::where('email', $user->getEmail())->first();
+        $authUser = Customer::updateOrCreate([
+            'provider_id' => $user->getId(),
+            'provider' => $provider,
+        ], [
+            'name' => $user->getName(),
+            'email' => $user->getEmail(),
+            'logo' => $user->getAvatar(),
+            'password' => \Hash::make('password'),
+            // Add any other fields you need
+        ]);
 
-        if (!$authUser) {
-            $authUser = Customer::create([
-                'name' => $user->getName(),
-                'email' => $user->getEmail(),
-                'password' => bcrypt(Str::random(16)), // Create a password for the user
-            ]);
-        }
+        // Generate token for API
+
         CustomerAuth()->setUser($authUser);
         CustomerAuth()->login($authUser,true);
 
@@ -43,4 +45,6 @@ class CustomersSocialAuthController extends BaseApiController
             ])
             ->setStatusCode(HttpStatus::HTTP_OK)->json();
     }
+
+
 }

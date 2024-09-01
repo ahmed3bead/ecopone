@@ -6,6 +6,7 @@ use App\CouponApp\Modules\CouponReactions\Api\Controllers\CouponReactionControll
 use App\CouponApp\Modules\Coupons\Api\Controllers\CouponController;
 use App\CouponApp\Modules\Customers\Api\Controllers\CustomerAuthController;
 use App\CouponApp\Modules\Customers\Api\Controllers\CustomerController;
+use App\CouponApp\Modules\Customers\Api\Controllers\CustomersSocialAuthController;
 use App\CouponApp\Modules\FavouriteCoupons\Api\Controllers\FavouriteCouponController;
 use App\CouponApp\Modules\FavouriteStores\Api\Controllers\FavouriteStoreController;
 use App\CouponApp\Modules\Sliders\Api\Controllers\SliderController;
@@ -25,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('api')->group(function () {
+    Route::get('auth/{provider}/redirect', [CustomersSocialAuthController::class, 'redirectToProvider']);
+    Route::get('auth/{provider}/callback', [CustomersSocialAuthController::class, 'handleProviderCallback']);
     Route::prefix('auth')->group(function () {
         //    Customer Auth
         Route::post('/login', [CustomerAuthController::class, 'login']);

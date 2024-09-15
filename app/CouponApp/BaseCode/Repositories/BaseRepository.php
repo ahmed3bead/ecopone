@@ -18,12 +18,6 @@ abstract class BaseRepository implements IRepository
 
     public function all()
     {
-        dd(QueryBuilder::for($this->model->query())
-            ->allowedIncludes($this->model->getAllowedIncludes())
-            ->allowedFilters($this->model->getAllowedFilters())
-            ->allowedSorts($this->model->getAllowedSorts())
-            ->defaultSort($this->model->getDefaultSort())
-            ->with($this->model->getDefaultIncludes())->toRawSql());
         return QueryBuilder::for($this->model->query())
             ->allowedIncludes($this->model->getAllowedIncludes())
             ->allowedFilters($this->model->getAllowedFilters())

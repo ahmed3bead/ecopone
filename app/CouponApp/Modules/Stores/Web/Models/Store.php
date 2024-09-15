@@ -33,8 +33,8 @@ class Store extends BaseModel
     }
 
     protected $casts = [
-        'country_id' => 'array', // Casting JSON field to array
-        'is_active' => 'boolean',
+        'country_id' => 'int', // Casting JSON field to array
+        'is_active' => 'boolean'
     ];
 
     public function country()

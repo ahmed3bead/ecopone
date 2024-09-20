@@ -9,6 +9,7 @@ use App\CouponApp\Modules\Categories\Web\Models\Category;
 use App\CouponApp\Modules\Countries\Web\Models\Country;
 use App\CouponApp\Modules\CouponReactions\Web\Models\CouponReaction;
 use App\CouponApp\Modules\FavouriteCoupons\Web\Models\FavouriteCoupon;
+use App\CouponApp\Modules\Occasions\Web\Models\Occasion;
 use App\CouponApp\Modules\Stores\Web\Models\Store;
 use Spatie\QueryBuilder\AllowedFilter;
 use TCG\Voyager\Traits\Translatable;
@@ -149,6 +150,24 @@ class Coupon extends BaseModel
             ->where('country_id', app('country_id'))
             ->exists();
     }
+
+    public function occasions()
+    {
+        return $this->belongsToMany(Occasion::class, 'coupon_occasion');
+    }
+
+    // Scope to get only active coupons
+    public function scopeActive($query)
+    {
+        return $query->where('end_at', '>=', now())->where('is_active', true);
+    }
+
+    // Scope to get expired coupons
+    public function scopeExpired($query)
+    {
+        return $query->where('end_at', '<', now())->orWhere('is_expired', true);
+    }
+
 
 
 }

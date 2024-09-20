@@ -11,6 +11,7 @@ use App\CouponApp\Modules\CouponReactions\Web\Models\CouponReaction;
 use App\CouponApp\Modules\FavouriteCoupons\Web\Models\FavouriteCoupon;
 use App\CouponApp\Modules\Occasions\Web\Models\Occasion;
 use App\CouponApp\Modules\Stores\Web\Models\Store;
+use Carbon\Carbon;
 use Spatie\QueryBuilder\AllowedFilter;
 use TCG\Voyager\Traits\Translatable;
 use Illuminate\Database\Eloquent\Builder;
@@ -120,7 +121,7 @@ class Coupon extends BaseModel
 
     public function getAllowedIncludes()
     {
-        return ['country', 'reactions', 'translations', 'likeReactionsCount', 'dislikeReactionsCount','store','category'];
+        return ['country', 'reactions', 'translations', 'likeReactionsCount', 'dislikeReactionsCount','store','category','occasions'];
     }
 
     public function getAllowedFilters()
@@ -166,6 +167,11 @@ class Coupon extends BaseModel
     public function scopeExpired($query)
     {
         return $query->where('end_at', '<', now())->orWhere('is_expired', true);
+    }
+
+    public function isExpired()
+    {
+        return $this->end_at < Carbon::today();
     }
 
 

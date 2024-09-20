@@ -23,6 +23,11 @@ class Occasion extends BaseModel
     ];
     protected $fillable = ['name', 'description', 'background_image', 'background_color', 'start_at', 'end_at'];
 
+    public function getAllowedIncludes()
+    {
+        return ['country', 'coupons'];
+    }
+
     // Many-to-many relationship with Coupons
     public function coupons()
     {

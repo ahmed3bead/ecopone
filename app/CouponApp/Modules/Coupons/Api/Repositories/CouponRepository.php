@@ -6,6 +6,7 @@ use App\CouponApp\BaseCode\Repositories\BaseRepository;
 use App\CouponApp\Modules\CouponReactions\Api\Models\CouponReaction;
 use App\CouponApp\Modules\Coupons\Api\Models\Coupon;
 use App\CouponApp\Modules\FavouriteCoupons\Api\Models\FavouriteCoupon;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class CouponRepository extends BaseRepository
 {
@@ -17,6 +18,18 @@ class CouponRepository extends BaseRepository
     public function addToFavourite($id)
     {
         return $this->find($id)->addToFavorites();
+    }
+
+    public function all()
+    {
+        return QueryBuilder::for($this->model->query()->active())
+            ->allowedIncludes($this->model->getAllowedIncludes())
+            ->allowedFilters($this->model->getAllowedFilters())
+            ->allowedSorts($this->model->getAllowedSorts())
+            ->defaultSort($this->model->getDefaultSort())
+            ->with($this->model->getDefaultIncludes())
+            ->paginate(request()->limit)
+            ->appends(request()->query());
     }
 
     public function removeFromFavorites($id)

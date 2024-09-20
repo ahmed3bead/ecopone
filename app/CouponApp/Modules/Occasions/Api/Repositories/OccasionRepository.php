@@ -15,6 +15,7 @@ class OccasionRepository extends BaseRepository
 
     public function all()
     {
+        dd($this->model->query()->active()->toRawSql());
         return QueryBuilder::for($this->model->query()->active())
             ->allowedIncludes($this->model->getAllowedIncludes())
             ->allowedFilters($this->model->getAllowedFilters())

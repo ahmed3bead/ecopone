@@ -24,18 +24,17 @@ class CountryMiddleware
 
         if ($countryCode) {
             // Retrieve the country ID from the database
-            $country = Country::where('code', $countryCode)->first();
-
+            $country = Country::where('code', $countryCode)->select(['id','name','code'])->first();
             if ($country) {
                 // Share the country ID across the application
                 app()->instance('country_id', $country->id);
             } else {
-                $country = Country::first();
+                $country = Country::query()->select(['id','name','code'])->first();
                 app()->instance('country_id', $country->id);
 
             }
         } else {
-            $country = Country::first();
+            $country = Country::query()->select(['id','name','code'])->first();
             app()->instance('country_id', $country->id);
         }
 

@@ -23,7 +23,7 @@ class Occasion extends BaseModel
         'start_at' => 'date',
         'end_at' => 'date',
     ];
-    protected $fillable = ['name', 'description', 'background_image', 'background_color', 'start_at', 'end_at'];
+    protected $fillable = ['name', 'description', 'image', 'background_color', 'start_at', 'end_at'];
 
     public function getAllowedIncludes()
     {

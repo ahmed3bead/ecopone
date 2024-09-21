@@ -13,7 +13,7 @@ class OccasionRepository extends BaseRepository
         parent::__construct($model);
     }
 
-    public function all()
+    public function paginate()
     {
         dd($this->model->query()->active()->toRawSql());
         return QueryBuilder::for($this->model->query()->active())

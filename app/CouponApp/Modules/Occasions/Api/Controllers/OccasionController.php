@@ -24,7 +24,7 @@ class OccasionController extends BaseApiController
 
     public function index(OccasionListRequest $request): JsonResponse|Response
     {
-        $data = $this->service->all($request);
+        $data = $this->service->getAll($request);
         return response()->json($data);
     }
 

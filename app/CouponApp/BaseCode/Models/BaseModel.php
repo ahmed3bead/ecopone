@@ -137,6 +137,16 @@ abstract class BaseModel extends Model implements IModel
         return null; // Or return a placeholder image URL if desired
     }
 
+    public function getBackgroundImageAttribute()
+    {
+        if ($this->background_image) {
+            $path = Storage::url($this->background_image); // Get the relative URL
+            return url($path); // Prepend the base URL
+        }
+
+        return null; // Or return a placeholder image URL if desired
+    }
+
     public function getImageUrlAttribute()
     {
         if ($this->logo) {

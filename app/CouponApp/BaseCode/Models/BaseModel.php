@@ -139,6 +139,7 @@ abstract class BaseModel extends Model implements IModel
 
     public function getBackgroundImageAttribute()
     {
+        dd($this);
         if ($this->background_image) {
             $path = Storage::url($this->background_image); // Get the relative URL
             return url($path); // Prepend the base URL

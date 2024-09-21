@@ -17,10 +17,7 @@ class Occasion extends BaseModel
     protected $translatable = ['name'];
     protected $appends = ['formatted_translations'];
     // Hidden fields for array representation
-    protected $hidden = [
-        // Add fields you want to hide
-    ];
-
+    protected $hidden = ['translations', 'pivot'];
     // Cast attributes to specific types
     protected $casts = [
         'start_at' => 'date',

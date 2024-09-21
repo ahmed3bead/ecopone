@@ -6,11 +6,16 @@ use App\CouponApp\BaseCode\Models\BaseModel;
 use App\CouponApp\Modules\Countries\Web\Models\Country;
 use App\CouponApp\Modules\Coupons\Web\Models\Coupon;
 use Carbon\Carbon;
+use TCG\Voyager\Traits\Translatable;
 
 class Occasion extends BaseModel
 {
+    use Translatable;
 
 
+
+    protected $translatable = ['name'];
+    protected $appends = ['formatted_translations'];
     // Hidden fields for array representation
     protected $hidden = [
         // Add fields you want to hide

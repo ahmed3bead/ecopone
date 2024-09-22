@@ -27,7 +27,7 @@ class Occasion extends BaseModel
 
     public function getAllowedIncludes()
     {
-        return ['country', 'coupons'];
+        return ['country', 'coupons','coupons.store'];
     }
 
     // Many-to-many relationship with Coupons
